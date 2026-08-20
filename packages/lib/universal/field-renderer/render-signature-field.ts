@@ -231,7 +231,11 @@ const ADOPTION_STAMP_ID_FONT_SIZE = 6;
  * border, and the truncated signature ID under the bottom border. Node
  * coordinates are relative to the field group (0,0 = field top-left).
  */
-const createAdoptionStampNodes = (secondaryId: string, fieldWidth: number, fieldHeight: number): Konva.Node[] => {
+const createAdoptionStampNodes = (
+  secondaryId: string,
+  fieldWidth: number,
+  fieldHeight: number,
+): Array<Konva.Rect | Konva.Text> => {
   const frame = new Konva.Rect({
     x: 0,
     y: 0,
