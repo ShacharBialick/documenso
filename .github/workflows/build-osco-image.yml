@@ -51,5 +51,5 @@ jobs:
             NEXT_PRIVATE_TELEMETRY_KEY=
             NEXT_PRIVATE_TELEMETRY_HOST=
           tags: |
-            ghcr.io/shacharbialick/documenso:v2.17.0-osco.2
+            ghcr.io/shacharbialick/documenso:v2.17.0-osco.3
             ghcr.io/shacharbialick/documenso:osco-latest
