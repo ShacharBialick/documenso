@@ -67,19 +67,24 @@ module.exports = {
           DEFAULT: 'hsl(var(--widget))',
           foreground: 'hsl(var(--widget-foreground))',
         },
+        // The OS Company brand scale: upstream's green ramp hue-rotated to red
+        // (hue 95 -> 0, saturation/lightness preserved per step, so every
+        // existing text/background pairing keeps its upstream contrast ratio).
+        // DEFAULT deviates from 500 on purpose: it is the exact brand red
+        // measured from the OS Company logo (#D40000).
         documenso: {
-          DEFAULT: '#A2E771',
+          DEFAULT: '#D40000',
           50: '#FFFFFF',
-          100: '#FDFFFD',
-          200: '#E7F9DA',
-          300: '#D0F3B7',
-          400: '#B9ED94',
-          500: '#A2E771',
-          600: '#83DF41',
-          700: '#66C622',
-          800: '#4D9619',
-          900: '#356611',
-          950: '#284E0D',
+          100: '#FFFDFD',
+          200: '#F9DADA',
+          300: '#F3B7B7',
+          400: '#ED9494',
+          500: '#E77171',
+          600: '#DF4141',
+          700: '#C62222',
+          800: '#961919',
+          900: '#661111',
+          950: '#4E0D0D',
         },
         dawn: {
           DEFAULT: '#aaa89f',
