@@ -410,7 +410,7 @@ export const SignUpForm = ({
           <Trans>
             By proceeding, you agree to our{' '}
             <Link
-              to="https://theoscompany.co.uk/legal/terms"
+              to="https://theoscompany.com/legal/terms"
               target="_blank"
               className="text-documenso-700 duration-200 hover:opacity-70"
             >
@@ -418,7 +418,7 @@ export const SignUpForm = ({
             </Link>{' '}
             and{' '}
             <Link
-              to="https://theoscompany.co.uk/legal/privacy"
+              to="https://theoscompany.com/legal/privacy"
               target="_blank"
               className="text-documenso-700 duration-200 hover:opacity-70"
             >
