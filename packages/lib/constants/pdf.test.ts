@@ -3,19 +3,19 @@ import { describe, expect, it } from 'vitest';
 import { getSignatureFontFamily } from './pdf';
 
 describe('getSignatureFontFamily', () => {
-  const expectCaveat = (family: string) => expect(family).toBe('Caveat');
+  const expectScript = (family: string) => expect(family).toBe('Alex Brush');
   const expectNotoChain = (family: string) => {
     expect(family).toContain('"Noto Sans"');
     expect(family).toContain('"Noto Sans Chinese"');
     expect(family).toContain('"Noto Sans Japanese"');
     expect(family).toContain('"Noto Sans Korean"');
     expect(family).toContain('sans-serif');
-    expect(family).not.toContain('Caveat');
+    expect(family).not.toContain('Alex Brush');
   };
 
-  it('returns Caveat for ASCII-only text', () => {
-    expectCaveat(getSignatureFontFamily('John Doe'));
-    expectCaveat(getSignatureFontFamily(''));
+  it('returns Alex Brush for ASCII-only text', () => {
+    expectScript(getSignatureFontFamily('John Doe'));
+    expectScript(getSignatureFontFamily(''));
   });
 
   it('returns the Noto chain for any non-ASCII character', () => {

@@ -14,10 +14,10 @@ import { match } from 'ts-pattern';
 export const ensureFontLibrary = () => {
   const fontPath = path.join(process.cwd(), 'public/fonts');
 
-  if (!FontLibrary.has('Caveat')) {
+  if (!FontLibrary.has('Alex Brush')) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     FontLibrary.use({
-      ['Caveat']: [path.join(fontPath, 'caveat.ttf')],
+      ['Alex Brush']: [path.join(fontPath, 'alex-brush.ttf')],
     });
   }
 
