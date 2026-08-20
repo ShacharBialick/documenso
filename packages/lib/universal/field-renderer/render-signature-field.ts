@@ -218,6 +218,76 @@ const createFieldSignature = (field: FieldToRender, options: RenderFieldElementO
   return { node: fieldText, isImageSignature: false, isLabel };
 };
 
+const ADOPTION_STAMP_LABEL = 'Signed via TheOSCompany Sign:';
+const ADOPTION_STAMP_LABEL_SHORT = 'OS-Signed by:';
+const ADOPTION_STAMP_FRAME_COLOR = '#1F1F1F';
+const ADOPTION_STAMP_ID_COLOR = '#595959';
+const ADOPTION_STAMP_LABEL_FONT_SIZE = 6.5;
+const ADOPTION_STAMP_ID_FONT_SIZE = 6;
+
+/**
+ * DocuSign-style adoption stamp for the sealed PDF: a thin dark rounded
+ * frame around the signature field, a short label overlapping the top-left
+ * border, and the truncated signature ID under the bottom border. Node
+ * coordinates are relative to the field group (0,0 = field top-left).
+ */
+const createAdoptionStampNodes = (secondaryId: string, fieldWidth: number, fieldHeight: number): Konva.Node[] => {
+  const frame = new Konva.Rect({
+    x: 0,
+    y: 0,
+    width: fieldWidth,
+    height: fieldHeight,
+    cornerRadius: 4,
+    stroke: ADOPTION_STAMP_FRAME_COLOR,
+    strokeWidth: 0.8,
+    listening: false,
+  });
+
+  const makeLabel = (text: string) =>
+    new Konva.Text({
+      text,
+      fontSize: ADOPTION_STAMP_LABEL_FONT_SIZE,
+      fontFamily: 'Inter',
+      fill: ADOPTION_STAMP_FRAME_COLOR,
+      listening: false,
+    });
+
+  let label = makeLabel(ADOPTION_STAMP_LABEL);
+
+  if (label.width() > fieldWidth - 16) {
+    label = makeLabel(ADOPTION_STAMP_LABEL_SHORT);
+  }
+
+  // Center the label vertically on the top border, on a white patch so it
+  // reads as interrupting the frame line.
+  const labelPadX = 3;
+
+  label.x(6);
+  label.y(-label.height() / 2);
+
+  const labelBackground = new Konva.Rect({
+    x: 6 - labelPadX,
+    y: -label.height() / 2 - 1,
+    width: label.width() + labelPadX * 2,
+    height: label.height() + 2,
+    fill: '#FFFFFF',
+    listening: false,
+  });
+
+  const idText = new Konva.Text({
+    x: 6,
+    y: fieldHeight + 2,
+    text: `ID: ${secondaryId.slice(0, 16).toUpperCase()}...`,
+    fontSize: ADOPTION_STAMP_ID_FONT_SIZE,
+    fontFamily: 'Inter',
+    letterSpacing: 0.4,
+    fill: ADOPTION_STAMP_ID_COLOR,
+    listening: false,
+  });
+
+  return [frame, labelBackground, label, idText];
+};
+
 export const renderSignatureFieldElement = (field: FieldToRender, options: RenderFieldElementOptions) => {
   const { mode = 'edit', pageLayer, pageWidth, pageHeight, color } = options;
 
@@ -313,6 +383,19 @@ export const renderSignatureFieldElement = (field: FieldToRender, options: Rende
   if (mode === 'export') {
     // Hide the rectangle.
     fieldRect.opacity(0);
+
+    // Draw the adoption stamp (thin frame, label on the top border and the
+    // truncated signature ID under the bottom border) around signed fields.
+    // The ID is Field.secondaryId — the same value shown as "Signature ID"
+    // on the signing certificate, so the mark cross-references the audit
+    // trail. The signing token is never used here.
+    if (field.inserted && field.signature && field.secondaryId) {
+      const { fieldWidth, fieldHeight } = calculateFieldPosition(field, pageWidth, pageHeight);
+
+      for (const node of createAdoptionStampNodes(field.secondaryId, fieldWidth, fieldHeight)) {
+        fieldGroup.add(node);
+      }
+    }
   }
 
   if (color !== 'readOnly' && mode !== 'export') {

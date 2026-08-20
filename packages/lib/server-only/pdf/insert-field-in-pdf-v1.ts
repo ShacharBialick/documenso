@@ -25,6 +25,7 @@ import {
   ZRadioFieldMeta,
   ZTextFieldMeta,
 } from '../../types/field-meta';
+import { drawAdoptionStamp } from './draw-adoption-stamp';
 import { getPageSize } from './get-page-size';
 
 export const insertFieldInPDFV1 = async (pdf: PDFDocument, field: FieldWithSignature) => {
@@ -206,6 +207,23 @@ export const insertFieldInPDFV1 = async (pdf: PDFDocument, field: FieldWithSigna
             size: fontSize,
             font,
             rotate: degrees(pageRotationInDegrees),
+          });
+        }
+
+        // Draw the adoption stamp (frame + label + signature ID) around the
+        // signature. Skipped on rotated pages: the per-element rotation
+        // transforms differ and the V2 path covers rotated documents.
+        if (pageRotationInDegrees === 0 && field.secondaryId) {
+          const stampFont = await pdf.embedFont(fontNoto);
+
+          drawAdoptionStamp({
+            page,
+            font: stampFont,
+            x: fieldX,
+            y: pageHeight - fieldY - fieldHeight,
+            width: fieldWidth,
+            height: fieldHeight,
+            secondaryId: field.secondaryId,
           });
         }
       },

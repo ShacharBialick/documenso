@@ -201,6 +201,19 @@ export default function SigningCertificate({ loaderData }: Route.ComponentProps)
       ?.fields.find((field) => field.type === FieldType.SIGNATURE || field.type === FieldType.FREE_SIGNATURE);
   };
 
+  /**
+   * All signature fields for a recipient. Every ID listed here is printed
+   * (truncated) on that field's adoption stamp in the sealed document, so
+   * each visible stamp can be matched back to this certificate.
+   */
+  const getRecipientSignatureFields = (recipientId: number) => {
+    return (
+      document.recipients
+        .find((recipient) => recipient.id === recipientId)
+        ?.fields.filter((field) => field.type === FieldType.SIGNATURE || field.type === FieldType.FREE_SIGNATURE) ?? []
+    );
+  };
+
   return (
     <div className="print-provider pointer-events-none mx-auto max-w-screen-md">
       <div className="flex items-center">
@@ -265,7 +278,11 @@ export default function SigningCertificate({ loaderData }: Route.ComponentProps)
 
                           <p className="mt-2 text-muted-foreground text-sm print:text-xs">
                             <span className="font-medium">{_(msg`Signature ID`)}:</span>{' '}
-                            <span className="block font-mono uppercase">{signature.secondaryId}</span>
+                            {getRecipientSignatureFields(recipient.id).map((signatureField) => (
+                              <span key={signatureField.secondaryId} className="block font-mono uppercase">
+                                {signatureField.secondaryId}
+                              </span>
+                            ))}
                           </p>
                         </>
                       ) : (

@@ -12,6 +12,11 @@ export type FieldToRender = Pick<
   'envelopeItemId' | 'recipientId' | 'type' | 'page' | 'customText' | 'inserted' | 'recipientId'
 > & {
   renderId: string; // A unique ID for the field in the render.
+  /**
+   * The field's stable unique ID (Field.secondaryId). Printed on the sealed
+   * PDF's adoption stamp and as "Signature ID" on the signing certificate.
+   */
+  secondaryId?: string;
   width: number;
   height: number;
   positionX: number;
