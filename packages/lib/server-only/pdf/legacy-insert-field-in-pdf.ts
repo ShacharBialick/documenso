@@ -29,7 +29,7 @@ import { getPageSize } from './get-page-size';
 
 export const legacy_insertFieldInPDF = async (pdf: PDFDocument, field: FieldWithSignature) => {
   const [fontSignature, fontNoto] = await Promise.all([
-    fetch(`${NEXT_PRIVATE_INTERNAL_WEBAPP_URL()}/fonts/alex-brush.ttf`).then(async (res) => res.arrayBuffer()),
+    fetch(`${NEXT_PRIVATE_INTERNAL_WEBAPP_URL()}/fonts/allura.ttf`).then(async (res) => res.arrayBuffer()),
     fetch(`${NEXT_PRIVATE_INTERNAL_WEBAPP_URL()}/fonts/noto-sans.ttf`).then(async (res) => res.arrayBuffer()),
   ]);
 

@@ -3,17 +3,17 @@ import { describe, expect, it } from 'vitest';
 import { getSignatureFontFamily } from './pdf';
 
 describe('getSignatureFontFamily', () => {
-  const expectScript = (family: string) => expect(family).toBe('Alex Brush');
+  const expectScript = (family: string) => expect(family).toBe('Allura');
   const expectNotoChain = (family: string) => {
     expect(family).toContain('"Noto Sans"');
     expect(family).toContain('"Noto Sans Chinese"');
     expect(family).toContain('"Noto Sans Japanese"');
     expect(family).toContain('"Noto Sans Korean"');
     expect(family).toContain('sans-serif');
-    expect(family).not.toContain('Alex Brush');
+    expect(family).not.toContain('Allura');
   };
 
-  it('returns Alex Brush for ASCII-only text', () => {
+  it('returns Allura for ASCII-only text', () => {
     expectScript(getSignatureFontFamily('John Doe'));
     expectScript(getSignatureFontFamily(''));
   });

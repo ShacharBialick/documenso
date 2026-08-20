@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 
 import { cn } from '../../lib/utils';
 
-const SIGNATURE_FONT_FAMILY = 'Alex Brush';
+const SIGNATURE_FONT_FAMILY = 'Allura';
 
 export type SignatureRenderProps = {
   className?: string;

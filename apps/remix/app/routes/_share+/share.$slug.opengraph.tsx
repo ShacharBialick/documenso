@@ -28,10 +28,10 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 
   const baseUrl = NEXT_PUBLIC_WEBAPP_URL();
 
-  const [interSemiBold, interRegular, alexBrushRegular] = await Promise.all([
+  const [interSemiBold, interRegular, alluraRegular] = await Promise.all([
     fetch(new URL(`${baseUrl}/fonts/inter-semibold.ttf`, import.meta.url)).then(async (res) => res.arrayBuffer()),
     fetch(new URL(`${baseUrl}/fonts/inter-regular.ttf`, import.meta.url)).then(async (res) => res.arrayBuffer()),
-    fetch(new URL(`${baseUrl}/fonts/alex-brush.ttf`, import.meta.url)).then(async (res) => res.arrayBuffer()),
+    fetch(new URL(`${baseUrl}/fonts/allura.ttf`, import.meta.url)).then(async (res) => res.arrayBuffer()),
   ]);
 
   const recipientOrSender = await getRecipientOrSenderByShareLinkSlug({
@@ -118,7 +118,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
             justifyContent: 'center',
             textAlign: 'center',
             color: '#64748b',
-            fontFamily: 'Alex Brush',
+            fontFamily: 'Allura',
             fontSize: Math.max(Math.min((CARD_WIDTH * 1.5) / signatureName.length, 80), 36),
             top: CARD_OFFSET_TOP,
             left: CARD_OFFSET_LEFT,
@@ -156,8 +156,8 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
       height: IMAGE_SIZE.height,
       fonts: [
         {
-          name: 'Alex Brush',
-          data: alexBrushRegular,
+          name: 'Allura',
+          data: alluraRegular,
           style: 'italic',
         },
         {

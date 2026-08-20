@@ -1,9 +1,8 @@
-Copyright 2011 The Alex Brush Project Authors (https://github.com/googlefonts/alex-brush)
-
+Copyright 2010 The Allura Project Authors (https://github.com/googlefonts/allura)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:
-https://scripts.sil.org/OFL
+http://scripts.sil.org/OFL
 
 
 -----------------------------------------------------------

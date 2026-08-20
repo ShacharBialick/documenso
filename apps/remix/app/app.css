@@ -18,10 +18,10 @@
   font-display: swap;
 }
 
-/* Alex Brush — typed-signature script font (SIL OFL, see /fonts/OFL-alex-brush.txt) */
+/* Allura — typed-signature script font (SIL OFL, see /fonts/OFL-allura.txt) */
 @font-face {
-  font-family: "Alex Brush";
-  src: url("/fonts/alex-brush.ttf") format("truetype");
+  font-family: "Allura";
+  src: url("/fonts/allura.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -65,7 +65,7 @@
 @layer base {
   :root {
     --font-sans: "Inter";
-    --font-signature: "Alex Brush";
+    --font-signature: "Allura";
     --font-noto: "Noto Sans", "Noto Sans Korean", "Noto Sans Japanese", "Noto Sans Chinese";
   }
 }

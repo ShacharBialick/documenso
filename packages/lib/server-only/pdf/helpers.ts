@@ -14,10 +14,10 @@ import { match } from 'ts-pattern';
 export const ensureFontLibrary = () => {
   const fontPath = path.join(process.cwd(), 'public/fonts');
 
-  if (!FontLibrary.has('Alex Brush')) {
+  if (!FontLibrary.has('Allura')) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     FontLibrary.use({
-      ['Alex Brush']: [path.join(fontPath, 'alex-brush.ttf')],
+      ['Allura']: [path.join(fontPath, 'allura.ttf')],
     });
   }
 

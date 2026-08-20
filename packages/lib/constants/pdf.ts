@@ -7,9 +7,9 @@ export const DEFAULT_SIGNATURE_TEXT_FONT_SIZE = 18;
 export const MIN_STANDARD_FONT_SIZE = 8;
 export const MIN_HANDWRITING_FONT_SIZE = 20;
 
-export const SIGNATURE_FONT_PATH = () => `${NEXT_PUBLIC_WEBAPP_URL()}/fonts/alex-brush.ttf`;
+export const SIGNATURE_FONT_PATH = () => `${NEXT_PUBLIC_WEBAPP_URL()}/fonts/allura.ttf`;
 
-const SIGNATURE_FONT_FAMILY_SCRIPT = 'Alex Brush';
+const SIGNATURE_FONT_FAMILY_SCRIPT = 'Allura';
 
 // CN-before-JP: the JP Noto file's Han glyphs use JP shapes, so pure-CN
 // text would otherwise render with JP forms. Family names sync with
