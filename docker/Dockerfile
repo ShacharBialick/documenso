@@ -1,7 +1,9 @@
 ###########################
 #     BASE CONTAINER      #
 ###########################
-FROM node:22-alpine3.22 AS base
+# Pinned to an exact Node release: 22.23.4 fixes CVE-2026-111497 (Brotli decoder RCE).
+# The moving node:22-alpine3.22 tag stopped updating on 2026-05-14, so it never got the fix.
+FROM node:22.23.4-alpine3.23 AS base
 
 RUN apk add --no-cache openssl
 RUN apk add --no-cache font-freefont
